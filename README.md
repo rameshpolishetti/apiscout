@@ -70,18 +70,18 @@ This section provides minimal steps to get apiscout running inside a kuebernetes
 ### Prerequisites
 
 * Docker 
-* Kubernetes environemnt (for example minikube)
+* Kubernetes environemnt
 
 ### Steps to follow
 
-1. Setup up kuebernetes environment
+1. Setup up kuebernetes environment from [here](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 * `make minikube-install`. You can skip this if minikube already installed.
 * `make minikube-start`
 2. Build and deploy apiscout
 * `make deps`
 * `make build-all`
+* update `apiscout.yml` with kubernetes host ip and docker image name in `EXTERNALIP` value and `image` fields.
 * `make run-kube`
-* prepare `apiscout.yml`
 3. Build and deploy sample micro service
 * Navigate to samples/invoiceservice-go folder - `cd samples/invoiceservice-go`
 * `make deps`
