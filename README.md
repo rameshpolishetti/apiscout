@@ -80,7 +80,7 @@ This section provides minimal steps to get apiscout running inside a kuebernetes
 2. Build and deploy apiscout
 * `make deps`
 * `make build-all`
-* update `apiscout.yml` with kubernetes host ip and docker image name in `EXTERNALIP` value and `image` fields.
+* Update `apiscout.yml`<br>`EXTERNALIP` value with kubernetes host ip<br>`image` with docker image name built in the previous step `make build-all`
 * `make run-kube`
 3. Build and deploy sample micro service
 * Navigate to samples/invoiceservice-go folder - `cd samples/invoiceservice-go`
@@ -89,8 +89,7 @@ This section provides minimal steps to get apiscout running inside a kuebernetes
 * `make build-docker`
 * `make run-kube`
 4. Testing
-* Open kubernetes service url in browser to see swagger spec
-
+* Run `make minikube-show` or open kubernetes service url in browser to see swagger spec.
 
 ## License
 See the [LICENSE](./LICENSE) file
