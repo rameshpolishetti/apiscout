@@ -63,6 +63,35 @@ apiscout has a few environment variables that the docker container (and thus the
 * **EXTERNALIP**: The external IP address of the Kubernetes cluster in case of LOCAL mode
 * **HUGODIR**: The base directory for Hugo
 
+## Getting started in few minutes
+
+This section provides minimal steps to get apiscout running inside a kuebernetes cluster on local machine / VM of your chaoice.
+
+### Prerequisites
+
+* Docker 
+* Kubernetes environemnt (for example minikube)
+
+### Steps to follow
+
+1. Setup up kuebernetes environment
+* `make minikube-install`. You can skip this if minikube already installed.
+* `make minikube-start`
+2. Build and deploy apiscout
+* `make deps`
+* `make build-all`
+* `make run-kube`
+* prepare `apiscout.yml`
+3. Build and deploy sample micro service
+* Navigate to samples/invoiceservice-go folder - `cd samples/invoiceservice-go`
+* `make deps`
+* `make build-app`
+* `make build-docker`
+* `make run-kube`
+4. Testing
+* Open kubernetes service url in browser to see swagger spec
+
+
 ## License
 See the [LICENSE](./LICENSE) file
 
