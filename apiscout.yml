@@ -38,7 +38,7 @@ spec:
         - name: HUGODIR
           value: "/tmp"
         - name: EXTERNALIP
-          value: "10.97.90.126"
+          value: "192.168.99.100"
         imagePullPolicy: Never
         ports:
         - containerPort: 80
