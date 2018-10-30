@@ -65,32 +65,80 @@ apiscout has a few environment variables that the docker container (and thus the
 
 ## Getting started
 
-This section provides minimal steps to get apiscout running inside a kubernetes cluster on local machine / VM of your choice.
+This section provides minimal steps to get `apiscout` running inside a kubernetes cluster on local machine / VM of your choice.
 
 ### Prerequisites
 
 * Docker 
-* Kubernetes environment
+* Kubernetes environment (for example [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/))
 
 ### Steps to follow
 
-1. Setup up kubernetes environment from [here](https://kubernetes.io/docs/tasks/tools/install-minikube/)
-* `make minikube-install`. You can skip this if minikube already installed.
-* `make minikube-start`
+1. Start minikube
+```bash
+$ make minikube-start
+```
+
 2. Build and deploy apiscout
-* `make deps`
-* `make build-all`
-* Update `apiscout.yml`<br>`EXTERNALIP` value with kubernetes host ip<br>`image` with docker image name built in the previous step `make build-all`
-* `make run-kube`
+
+* Update `EXTERNALIP` value with minikube IP and `image` with docker image name in apiscout.yml
+```bash
+# Install dependencies
+$ make deps
+
+# Build apiscout docker image
+$ make build-all
+
+# Deploy apiscout to Kubernetes
+$ make run-kube
+```
+
 3. Build and deploy sample micro service
-* Navigate to samples/invoiceservice-go folder - `cd samples/invoiceservice-go`
-* `make deps`
-* `make build-app`
-* `make build-docker`
-* `make run-kube`
-4. Testing
-* Navigate back to apiscout directory - `cd ../..`
-* Run `make minikube-show` or open kubernetes service url in browser to see swagger spec.
+
+```bash
+# Navigate to samples/invoiceservice-go folder
+$ cd samples/invoiceservice-go
+
+# Install dependencies
+$ make deps
+
+# Build sample microservice application
+$ make build-app
+
+# Build dcoker image with the sample microservice application
+$ make build-docker
+
+# Deploy sample application to Kubernetes
+$ make run-kube
+
+```
+
+### Testing
+
+
+```bash
+# Navigate back to apiscout directory
+$ cd ../..
+
+# Open kubernetes service url in a web browser to see sample application api specification in swagger format
+$ make minikube-show
+
+```
+
+### Cleanup
+
+```bash
+# Delete sample application from Kubernetes
+$ cd samples/invoiceservice-go
+$ make clean-kube
+
+# Delete apiscout from Kubernetes
+$ cd ../..
+$ make clean-kube
+
+# Stop minikube
+$ make minikube-stop
+```
 
 ## License
 See the [LICENSE](./LICENSE) file
