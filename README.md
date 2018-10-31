@@ -81,14 +81,16 @@ $ make minikube-start
 
 2. Build and deploy apiscout
 
-* Update `EXTERNALIP` value with minikube IP and `image` with docker image name in apiscout.yml
 ```bash
 # Install dependencies
 $ make deps
 
 # Build apiscout docker image
 $ make build-all
+```
+* Update `image` with apiscout docker image name built in the previous step and `EXTERNALIP` value with minikube IP in apiscout.yml 
 
+```bash
 # Deploy apiscout to Kubernetes
 $ make run-kube
 ```
